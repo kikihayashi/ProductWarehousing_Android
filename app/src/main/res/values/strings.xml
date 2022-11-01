@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">成品入庫</string>
+    <string name="plugin_name">成品入庫</string>
+
+    <string-array name="search_item">
+        <item>採購單號</item>
+        <item>單據日期</item>
+        <item>廠商名稱</item>
+        <item>廠商代碼</item>
+    </string-array>
+
+    <string name="title_home">條碼列印</string>
+    <string name="title_create">產品建立</string>
+    <string name="title_reprint">資料補印</string>
+    <string name="title_upload">資料上傳</string>
+    <string name="NetError">沒有網路連線，請確認是否連上網路</string>
+    <string name="next">下一步</string>
+    <string name="Date">單據日期\t\t</string>
+    <string name="type">進貨單別\t\t</string>
+    <string name="pageNo">進貨單號</string>
+    <string name="All">全部</string>
+    <string name="NotYet">未完成</string>
+    <string name="Record_All">彙總歷程</string>
+    <string name="Record_list">歷程列表</string>
+    <string name="Record">歷程記錄</string>
+    <string name="wareHouse">庫別</string>
+    <string name="supplier">供應商</string>
+    <string name="Qty">應收量</string>
+    <string name="QtyEnter">數量</string>
+    <string name="formate">規格</string>
+    <string name="Lot">批號</string>
+    <string name="Enter">確定</string>
+    <string name="Cancel">取消</string>
+    <string name="Close">關閉</string>
+    <string name="Error">錯誤</string>
+    <string name="Success">成功</string>
+    <string name="Upload">上傳</string>
+    <string name="Exit">退出</string>
+    <string name="UploadSuccess">上傳完成!</string>
+    <string name="UploadFailure">上傳失敗!</string>
+    <string name="Prompt">提示</string>
+    <string name="AskUpload">確定要上傳?</string>
+    <string name="ProductName">品名</string>
+    <string name="dataParseError">資料解析失敗!，請再試一次</string>
+    <string name="Delete">刪除</string>
+    <string name="AskDel">您確定要刪除嗎?</string>
+    <string name="ProductNo">品號</string>
+    <string name="SupplierProductNo">供應商\n品號</string>
+    <string name="SupplierName">供應商\n名稱</string>
+    <string name="waiting">載入中，請稍候...</string>
+    <string name="Select_All">全選</string>
+    <string name="Loading">讀取中...</string>
+    <string name="Warning">警告</string>
+    <string name="PlzEnterLotNo">請輸入批號</string>
+    <string name="NoBatchManagement">此項無批號管理</string>
+    <string name="SelectProductNumber">選擇品號單身</string>
+    <string name="ChoiceProductID">選擇品號</string>
+    <string name="Back">返回</string>
+    <string name="search">搜尋\t\t\t\t\t\t\t</string>
+</resources>

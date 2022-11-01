@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp">
+
+        <Button
+            android:id="@+id/printPallet"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="棧板"
+            android:textSize="20dp"
+            android:background="@drawable/rounded_corner_print_pallet"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    <TextView
+        android:id="@+id/partName"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:textColor="#000000"
+        android:padding="2.5dp"
+        android:gravity="center"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:text="請點選詳情按鈕"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/printPallet"
+        app:layout_constraintBottom_toTopOf="@+id/print"
+       />
+
+    <Button
+        android:id="@+id/print"
+        android:text="箱數列印"
+        android:background="@drawable/rounded_corner_print"
+        android:textColor="#FFFFFF"
+        android:textSize="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv1"
+        />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="棧板箱數"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/collectNumber"/>
+
+        <TextView
+            android:id="@+id/collectNumber"
+            android:text="0"
+            android:textSize="30dp"
+            android:background="#000000"
+            android:textColor="#F7F700"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="right|center_vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv1"
+            app:layout_constraintEnd_toStartOf="@id/info"
+            app:layout_constraintBottom_toTopOf="@+id/tv2"
+            />
+
+
+        <TextView
+        android:id="@+id/tv2"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="列印總數"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="@+id/tv1"
+        app:layout_constraintBottom_toTopOf="@+id/printNumber"/>
+
+        <TextView
+            android:id="@+id/printNumber"
+            android:text="1000"
+            android:textSize="30dp"
+            android:background="#000000"
+            android:textColor="#F7F700"
+            android:paddingRight="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="right"
+            app:layout_constraintBottom_toBottomOf="@id/info"
+            app:layout_constraintStart_toStartOf="@+id/tv2"
+            app:layout_constraintEnd_toStartOf="@id/info"
+            />
+
+
+
+    <Button
+        android:id="@+id/info"
+        android:text="詳情"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_corner_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
