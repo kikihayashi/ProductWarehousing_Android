@@ -110,7 +110,7 @@ public class UploadFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.upload:
-                showProgressBar("上傳資料中\n請勿離開此頁面");
+                showProgressBar("上傳資料中...\n請勿離開此頁面");
                 IoTool.setDistinctFileName();
                 upload(0);
                 break;

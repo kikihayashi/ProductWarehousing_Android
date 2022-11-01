@@ -116,7 +116,7 @@ public class CreateFragment extends BaseFragment implements View.OnClickListener
                 switch (tag) {
                     //來源資料庫重置成功，開始串API
                     case ResetSuccess:
-                        showProgressBar("與連線中...\n請勿離開此頁面");
+                        showProgressBar("請求API中...\n請勿離開此頁面");
                         searchOrderData(adapter.getToolModelList().get(0));
                         break;
 
