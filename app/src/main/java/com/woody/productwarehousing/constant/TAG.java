@@ -9,8 +9,7 @@ public enum TAG {
     PrintType("1"),//列印類別 1:列印、2:不成箱
 
     //Settings
-//    URL("http://192.168.43.15:8080/"),
-    URL("https://productwarehousing-on-heroku.herokuapp.com/"),
+    URL("http://192.168.43.15:8080/"),
     UserID("administrator") ,
     UserPWD("+aXGBvA/ovngr4gc3bGuIA=="),
     PDAID("25"),
