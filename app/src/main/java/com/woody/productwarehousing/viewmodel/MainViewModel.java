@@ -1,6 +1,9 @@
 package com.woody.productwarehousing.viewmodel;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
 import android.widget.EditText;
@@ -35,6 +38,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainViewModel extends AndroidViewModel {
 
     private MainRepository mainRepository;
@@ -43,7 +50,31 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        mainRepository = MainRepository.getInstance();
+        Interceptor interceptor = createInterceptor(application);
+        mainRepository = MainRepository.getInstance(interceptor);
+    }
+
+    private Interceptor createInterceptor(Application application) {
+        Interceptor interceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                // 獲取本地存儲的 Cookie
+                SharedPreferences preferences = application.getSharedPreferences("auth", MODE_PRIVATE);
+                String cookie = "JSESSIONID=" + preferences.getString("JSESSIONID", "");
+
+                // 獲取原始請求
+                Request originalRequest = chain.request();
+
+                // 構建新請求
+                Request newRequest = originalRequest.newBuilder()
+                        .header("Cookie",  cookie)  // 加入 Cookie 到標頭中
+                        .build();
+
+                // 發送新請求
+                return chain.proceed(newRequest);
+            }
+        };
+        return interceptor;
     }
 
     /**

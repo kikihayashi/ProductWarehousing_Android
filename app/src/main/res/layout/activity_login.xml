@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFE3EE"
+    tools:context=".view.LoginActivity">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#1E225A"
+        android:gravity="center"
+        android:text="成品入庫系統"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="25dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_copyright"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="50" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextColor="#E1E2DD">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:digits="0123456789
+                        abcdefghijklmnopqrstuvwxyz
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="請輸入帳號"
+                    android:inputType="textVisiblePassword"
+                    android:maxLength="5"
+                    android:singleLine="true"
+                    android:textColor="#00674A"
+                    android:textSize="25sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextColor="#E1E2DD">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+
+                    android:digits="0123456789
+                        abcdefghijklmnopqrstuvwxyz
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="請輸入密碼"
+                    android:inputType="textPassword"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="#00674A"
+                    android:textSize="25sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="#54565F"
+                android:onClick="login"
+                android:padding="20dp"
+                android:text="登入"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="Created By kikihayashi 2023"
+        android:textColor="#909090"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv" />
+
+    <include
+        android:id="@+id/view_progressBar"
+        layout="@layout/progress_bar_custom"
+        android:layout_margin="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/tv_copyright"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

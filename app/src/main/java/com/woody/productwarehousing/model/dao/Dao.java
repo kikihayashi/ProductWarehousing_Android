@@ -21,6 +21,11 @@ public interface Dao {
         SingleLiveEvent<TAG> getInfoMessage(PAGE fragmentTag);
     }
 
+    interface LoginDaoInterface extends BaseDaoInterface {
+
+        JsonObject setLoginJson(String account, String password);
+    }
+
     interface MainDaoInterface extends BaseDaoInterface {
 
         JsonObject setOrderJson(String MKOrdNO);
@@ -95,4 +100,6 @@ public interface Dao {
         void getInfoData(String mKOrdNO);
 
     }
+
+
 }

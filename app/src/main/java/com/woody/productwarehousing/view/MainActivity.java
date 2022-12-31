@@ -1,4 +1,4 @@
-package com.woody.productwarehousing;
+package com.woody.productwarehousing.view;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +35,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.woody.productwarehousing.R;
 import com.woody.productwarehousing.constant.PAGE;
+import com.woody.productwarehousing.utils.DialogManager;
 import com.woody.productwarehousing.view.BaseActivity;
 import com.woody.productwarehousing.view.Fragment.CreateFragment;
 import com.woody.productwarehousing.view.Fragment.PrintFragment;
@@ -68,28 +71,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
-        if (ContextCompat.checkSelfPermission
-                (this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        } else {
-            init();
-        }
+        init();
+//        if (ContextCompat.checkSelfPermission
+//                (this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+//                            Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+//        } else {
+//            init();
+//        }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            init();
-        } else {
-            finish();
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+//                grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+//            init();
+//        } else {
+//            finish();
+//        }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -249,10 +252,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        dialogManager.setBaseOption(getString(R.string.Exit), BaseActivity.emptyIcon, "確定要退出作業?");
+        dialogManager.setBaseOption(getString(R.string.Logout), BaseActivity.emptyIcon, "確定要登出?");
         dialogManager.setCancelable(true);
-        dialogManager.setButtonCommand(null, getString(R.string.Exit), getString(R.string.Cancel),
-                null, () -> finish(), null);
+        dialogManager.setButtonCommand(null, getString(R.string.Logout), getString(R.string.Cancel),
+                null, new DialogManager.NeutralCommand() {
+                    @Override
+                    public void neutralExecute() {
+                        setResult(MAIN_LOGOUT_CODE, getIntent());
+                        finish();
+                    }
+                }, null);
         showHintDialog(dialogManager.createDialog(), SOUND.INFO);
     }
 

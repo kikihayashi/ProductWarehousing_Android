@@ -1,6 +1,7 @@
 package com.woody.productwarehousing.model.retrofit;
 
 import android.accounts.NetworkErrorException;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,11 @@ import org.json.JSONObject;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
+import okhttp3.Headers;
 import retrofit2.Response;
 
 public class ApiResource<T> {
@@ -92,6 +96,10 @@ public class ApiResource<T> {
     @NonNull
     public TAG getTag() {
         return tag;
+    }
+
+    public Headers getHeaders() {
+        return response.headers();
     }
 
     public boolean isSuccessful() {

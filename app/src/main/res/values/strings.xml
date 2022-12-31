@@ -36,6 +36,7 @@
     <string name="Success">成功</string>
     <string name="Upload">上傳</string>
     <string name="Exit">退出</string>
+    <string name="Logout">登出</string>
     <string name="UploadSuccess">上傳完成!</string>
     <string name="UploadFailure">上傳失敗!</string>
     <string name="Prompt">提示</string>
