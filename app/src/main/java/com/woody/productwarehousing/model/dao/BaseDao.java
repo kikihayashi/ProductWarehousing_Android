@@ -16,6 +16,7 @@ public class BaseDao implements Dao.BaseDaoInterface {
     protected SingleLiveEvent<TAG> infoMessageLiveCreate = new SingleLiveEvent<>();
     protected SingleLiveEvent<TAG> infoMessageLiveUpload = new SingleLiveEvent<>();
     protected SingleLiveEvent<TAG> infoMessageLiveDetail = new SingleLiveEvent<>();
+    protected SingleLiveEvent<TAG> infoMessageLiveLogin = new SingleLiveEvent<>();
 
     //SQLite所需參數
     protected SQLiteDatabase sqLiteDatabase;
@@ -42,6 +43,8 @@ public class BaseDao implements Dao.BaseDaoInterface {
                 return infoMessageLiveUpload;
             case DetailActivity:
                 return infoMessageLiveDetail;
+            case LoginActivity:
+                return infoMessageLiveLogin;
             default:
                 throw new IllegalArgumentException();
         }

@@ -2,32 +2,37 @@ package com.woody.productwarehousing.model.retrofit;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
 
-    private static Retrofit retrofit;
-
     public static ApiCallService getApiCallService(String baseUrl, int second) {
-        return getRetrofit(baseUrl, second).create(ApiCallService.class);
+        OkHttpClient okHttpClient = setOkHttpTimeout(second).build();
+        return getRetrofit(baseUrl, okHttpClient).create(ApiCallService.class);
     }
 
-    private static Retrofit getRetrofit(String baseUrl, int second) {
+    public static ApiCallService getApiCallService(String baseUrl, int second, Interceptor interceptor) {
+        OkHttpClient okHttpClient = setOkHttpTimeout(second)
+                .addInterceptor(interceptor)
+                .build();
+        return getRetrofit(baseUrl, okHttpClient).create(ApiCallService.class);
+    }
 
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+    private static OkHttpClient.Builder setOkHttpTimeout(int second){
+        return new OkHttpClient().newBuilder()
                 .connectTimeout(second, TimeUnit.SECONDS)   // 設置連線Timeout
                 .writeTimeout(second, TimeUnit.SECONDS)
-                .readTimeout(second, TimeUnit.SECONDS)
-                .build();
+                .readTimeout(second, TimeUnit.SECONDS);
+    }
 
-        retrofit = new Retrofit.Builder()
+    private static Retrofit getRetrofit(String baseUrl, OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-
-        return retrofit;
     }
 }

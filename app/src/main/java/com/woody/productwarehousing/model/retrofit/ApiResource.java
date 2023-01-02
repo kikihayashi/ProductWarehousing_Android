@@ -1,6 +1,7 @@
 package com.woody.productwarehousing.model.retrofit;
 
 import android.accounts.NetworkErrorException;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,10 +10,16 @@ import androidx.annotation.Nullable;
 
 import com.woody.productwarehousing.constant.TAG;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.EOFException;
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
+import okhttp3.Headers;
 import retrofit2.Response;
 
 public class ApiResource<T> {
@@ -28,7 +35,7 @@ public class ApiResource<T> {
     }
 
     public static <T> ApiResource<T> requesting(TAG tag) {
-        return new ApiResource<>(tag,null);
+        return new ApiResource<>(tag, null);
     }
 
     public static <T> ApiResource<T> create(TAG tag, Response<T> response) {
@@ -43,10 +50,19 @@ public class ApiResource<T> {
             }
             return new ApiResource<>(tag, response);
         }
-        String message = response.code() + "錯誤，請檢查網路狀態或連線網址是否有誤！";
-        Log.v("LINS","response is not successful：" + response.code());
+        String errorMessage = "";
+        try {
+            String jsonString = response.errorBody().string();
+            JSONObject jsonObject = new JSONObject(jsonString);
+            errorMessage = jsonObject.getString("message");
+        } catch (IOException | JSONException e) {
+            errorMessage = "請檢查網路狀態或連線網址是否有誤！";
+            e.printStackTrace();
+        }
+        Log.v("LINS", "response is not successful：" + response.code());
+        String message = "HTTP " + response.code() + "：錯誤，" + errorMessage;
         TAG.LoadingFailure.setName(message);
-        return new ApiResource<>(TAG.LoadingFailure,null);
+        return new ApiResource<>(TAG.LoadingFailure, null);
     }
 
     public static <T> ApiResource<T> failure(Throwable t) {
@@ -63,12 +79,13 @@ public class ApiResource<T> {
             } else if (t instanceof NetworkErrorException) {
                 message = "網路連線失敗，請檢查網路！" + "\n" + t.toString();
             } else {
-                message = "伺服器問題，請稍後再試！" + "\n" + t.toString();;
+                message = "伺服器問題，請稍後再試！" + "\n" + t.toString();
+                ;
             }
-            Log.v("LINS","message_failure：" + message);
+            Log.v("LINS", "message_failure：" + message);
             TAG.LoadingFailure.setName(message);
         }
-        return new ApiResource<>(TAG.LoadingFailure,null);
+        return new ApiResource<>(TAG.LoadingFailure, null);
     }
 
     @Nullable
@@ -81,7 +98,11 @@ public class ApiResource<T> {
         return tag;
     }
 
-    public boolean isSuccessful(){
+    public Headers getHeaders() {
+        return response.headers();
+    }
+
+    public boolean isSuccessful() {
         return response.isSuccessful();
     }
 

@@ -8,7 +8,8 @@ public enum PAGE {
     CreateFragment("產品建立", Color.parseColor("#A8150F")),
     UploadFragment("資料上傳", Color.parseColor("#27756A")),
     ReprintFragment("資料補印", Color.parseColor("#37445C")),
-    DetailActivity("詳情頁面", Color.parseColor("#01579B"));
+    DetailActivity("詳情頁面", Color.parseColor("#01579B")),
+    LoginActivity("登入頁面", Color.parseColor("#01579B"));
 
     private String name;
     private int color;

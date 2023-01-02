@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -49,17 +50,17 @@ public class MainRepository extends BaseRepository {
     private ApiCallService apiCallService;//API
     private Dao.MainDaoInterface mainDaoInterface;
 
-    private MainRepository() {
+    private MainRepository(Interceptor interceptor) {
         super();
         mainDaoInterface = new MainDao();
-        apiCallService = RetrofitManager.getApiCallService(TAG.URL.getName(), TIMEOUT);
+        apiCallService = RetrofitManager.getApiCallService(TAG.URL.getName(), TIMEOUT, interceptor);
     }
 
-    public static MainRepository getInstance() {
+    public static MainRepository getInstance(Interceptor interceptor) {
         if (INSTANCE == null) {
             synchronized (MainDao.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new MainRepository();
+                    INSTANCE = new MainRepository(interceptor);
                 }
             }
         }

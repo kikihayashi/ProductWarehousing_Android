@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,11 +37,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DetailActivity extends BaseActivity implements View.OnClickListener, View.OnKeyListener{
+public class DetailActivity extends BaseActivity implements View.OnClickListener{
 
     private Toolbar toolbar;
     private ImageView img_up_down;
-    private EditText edit_mKOrdNO;
+//    private EditText edit_mKOrdNO;
     private TextView productName, prodName, manufactureDate, expiryDate, validTime, prodID;
     private Button selectProduct, selectDate, save, scrollUpDown;
     private BottomSheetBehavior bottomSheetBehavior;
@@ -127,7 +125,6 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         catch (NullPointerException e) {
             e.printStackTrace();
         }
-
         setRecyclerView();
         setViewModel();
     }
@@ -373,25 +370,25 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    @Override
-    public boolean onKey(View v, int i, KeyEvent keyEvent) {
-        if (keyEvent != null && KeyEvent.KEYCODE_ENTER == keyEvent.getKeyCode() && KeyEvent.ACTION_UP == keyEvent.getAction()) {
-            hideKeyboard();
-            switch (v.getId()) {
-                case R.id.edit_mKOrdNO:
-                    edit_mKOrdNO.selectAll();
-                    if (edit_mKOrdNO.getText().toString().trim().equals("")) {
-                        showErrorMessage("製令單號不可為空！");
-                        return true;
-                    }
-                    if (edit_mKOrdNO.getText().toString().trim().length()!=11) {
-                        showErrorMessage("製令單號長度需為11");
-                        return true;
-                    }
-                    detailViewModel.getInfoData(edit_mKOrdNO.getText().toString().trim());
-                    break;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onKey(View v, int i, KeyEvent keyEvent) {
+//        if (keyEvent != null && KeyEvent.KEYCODE_ENTER == keyEvent.getKeyCode() && KeyEvent.ACTION_UP == keyEvent.getAction()) {
+//            hideKeyboard();
+//            switch (v.getId()) {
+//                case R.id.edit_mKOrdNO:
+//                    edit_mKOrdNO.selectAll();
+//                    if (edit_mKOrdNO.getText().toString().trim().equals("")) {
+//                        showErrorMessage("製令單號不可為空！");
+//                        return true;
+//                    }
+//                    if (edit_mKOrdNO.getText().toString().trim().length()!=11) {
+//                        showErrorMessage("製令單號長度需為11");
+//                        return true;
+//                    }
+//                    detailViewModel.getInfoData(edit_mKOrdNO.getText().toString().trim());
+//                    break;
+//            }
+//        }
+//        return false;
+//    }
 }

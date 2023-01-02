@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 public class BaseRepository {
     //設定TimeOut時間
     public static final int TIMEOUT = 30;
+    //登入、登出
+    public static final String LOGIN_URL = "login";
+    public static final String LOGOUT_URL = "logout";
     //取得訂單、詳細資料
     public static final String ORDER_URL = "order";
     public static final String REGAL_INFO_URL = "info";

@@ -25,6 +25,8 @@ import java.text.SimpleDateFormat;
 public class BaseActivity extends AppCompatActivity {
 
     private static long lastClickTime;
+    public static int MAIN_LOGIN_CODE = 100;
+    public static int MAIN_LOGOUT_CODE = 101;
     public static int DETAIL_REQUEST_CODE = 200;
     public static int DETAIL_SAVE_CODE = 201;
     private int alertError, alertInfo;
